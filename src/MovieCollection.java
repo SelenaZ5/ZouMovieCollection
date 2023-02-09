@@ -225,13 +225,14 @@ public class MovieCollection {
     System.out.print("Enter a person to search for (first or last name): ");
     String searchTerm = scanner.nextLine();
 
+    String uniqueCast = "";
     // prevent case sensitivity
     searchTerm = searchTerm.toLowerCase();
 
     ArrayList<Movie> results = new ArrayList<Movie>();
 
     // search through ALL movies in collection
-    for (int i = 0; i < movies.size(); i++) {
+    for (int i = 0; i < movies.size(); i++){
       String movieCast = movies.get(i).getCast();
       movieCast = movieCast.toLowerCase();
 
@@ -248,7 +249,11 @@ public class MovieCollection {
       // now, display them all to the user
       for (int i = 0; i < results.size(); i++) {
         String cast = results.get(i).getCast();
-
+        System.out.println("Cast: " + cast.indexOf(searchTerm) != -1 + "");
+          if(cast.indexOf(searchTerm) != -1) {
+           // cast = cast.substring(cast.indexOf(searchTerm),cast.indexOf("|"));
+            cast = "Test";
+          }
         // this will print index 0 as choice 1 in the results list; better for user!
         int choiceNum = i + 1;
         System.out.println("" + choiceNum + ". " + cast);
@@ -270,7 +275,52 @@ public class MovieCollection {
   }
   
   private void listGenres() {
-    /* TASK 5: IMPLEMENT ME */
+    System.out.println("1.Action\n2.Adventure\n3.Animation\n4.Comedy\n5.Crime\n6.Documentary\n7.Drama\n8.Family\n9.Fantasy\n10.Foreign\n11.History" +
+            "\n12.Horror\n13.Music\n14.Mystery\n15.Romance\n16.Science Fiction\n17.TV Movie\n18.Thriller\n19.War\n20.Western");
+    System.out.println("Which would you like to see all movies for?");
+    System.out.println("Enter number: ");
+    int searchTerm = scanner.nextInt();
+    scanner.nextLine();
+
+    ArrayList<Movie> results = new ArrayList<Movie>();
+
+    // search through ALL movies in collection
+    for (int i = 0; i < movies.size(); i++) {
+      String movieGenre = movies.get(i).getGenres();
+      movieGenre = movieGenre.toLowerCase();
+
+      if (movieGenre.indexOf(searchTerm) != -1) {
+        //add the Movie objest to the results list
+        results.add(movies.get(i));
+      }
+    }
+
+    if (results.size() > 0) {
+      // sort the results by title
+      sortResults(results);
+
+      // now, display them all to the user
+      for (int i = 0; i < results.size(); i++) {
+        String genres = results.get(i).getTitle();
+
+        // this will print index 0 as choice 1 in the results list; better for user!
+        int choiceNum = i + 1;
+        System.out.println("" + choiceNum + ". " + genres);
+      }
+
+      System.out.println("Which movie would you like to learn more about?");
+      System.out.print("Enter number: ");
+      int choice = scanner.nextInt();
+      scanner.nextLine();
+      Movie selectedMovie = results.get(choice - 1);
+      displayMovieInfo(selectedMovie);
+      System.out.println("\n ** Press Enter to Return to Main Menu **");
+      scanner.nextLine();
+    } else {
+      System.out.println("\nNo movie titles match that search term!");
+      System.out.println("** Press Enter to Return to Main Menu **");
+      scanner.nextLine();
+    }
   }
   
   private void listHighestRated() {
