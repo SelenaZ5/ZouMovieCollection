@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63b5e0ea-ab3f-4828-91f3-3ac66231ab55" name="Changes" comment="searchCast method">
+    <list default="true" id="63b5e0ea-ab3f-4828-91f3-3ac66231ab55" name="Changes" comment="completed project">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MovieCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieCollection.java" afterDir="false" />
     </list>
@@ -101,6 +101,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="searchCast method" />
-    <option name="LAST_COMMIT_MESSAGE" value="searchCast method" />
+    <MESSAGE value="completed project" />
+    <option name="LAST_COMMIT_MESSAGE" value="completed project" />
   </component>
 </project>
