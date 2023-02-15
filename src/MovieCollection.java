@@ -231,7 +231,7 @@ public class MovieCollection {
           uniqueCast.add(nextCast);
         }
       }
-      if(uniqueCast.indexOf(cast) == -1){
+      if (uniqueCast.indexOf(cast) == -1) {
         uniqueCast.add(cast);
       }
     }
@@ -249,20 +249,18 @@ public class MovieCollection {
     if (results.size() > 0) {
       sortStrings(results);
 
-        String member = displayString(results);
+      String member = displayString(results);
 
-        ArrayList<Movie> returns = new ArrayList<Movie>();
-        for (int j = 0; j < movies.size(); j++)
-        {
-          String castMem = movies.get(j).getCast();
+      ArrayList<Movie> returns = new ArrayList<Movie>();
+      for (int j = 0; j < movies.size(); j++) {
+        String castMem = movies.get(j).getCast();
 
-          if (castMem.indexOf(member) != -1)
-          {
-            returns.add(movies.get(j));
-          }
+        if (castMem.indexOf(member) != -1) {
+          returns.add(movies.get(j));
         }
-        sortResults(returns);
-        displayReturns(returns, "title");
+      }
+      sortResults(returns);
+      displayReturns(returns, "title");
     } else {
       System.out.println("\nNo result match that search term!");
       System.out.println("** Press Enter to Return to Main Menu **");
@@ -285,7 +283,7 @@ public class MovieCollection {
           uniqueGenre.add(nextGenre);
         }
       }
-      if(uniqueGenre.indexOf(genre) == -1){
+      if (uniqueGenre.indexOf(genre) == -1) {
         uniqueGenre.add(genre);
       }
     }
@@ -293,15 +291,15 @@ public class MovieCollection {
     sortStrings(uniqueGenre);
     String genre = displayString(uniqueGenre);
 
-    ArrayList<Movie> returns= new ArrayList<Movie>();
-    for(int i = 0; i < movies.size();i++){
-      if(movies.get(i).getGenres().indexOf(genre) != -1) {
+    ArrayList<Movie> returns = new ArrayList<Movie>();
+    for (int i = 0; i < movies.size(); i++) {
+      if (movies.get(i).getGenres().indexOf(genre) != -1) {
         returns.add(movies.get(i));
       }
     }
     sortResults(returns);
     displayReturns(returns, "title");
-    }
+  }
 
 
   private void sortStrings(ArrayList<String> list) {
@@ -335,36 +333,26 @@ public class MovieCollection {
     return selected;
   }
 
-  private void displayReturns(ArrayList<Movie> list, String option)
-  {
-    for (int i = 0; i < list.size(); i++)
-    {
+  private void displayReturns(ArrayList<Movie> list, String option) {
+    for (int i = 0; i < list.size(); i++) {
       String title = list.get(i).getTitle();
 
       int choiceNum = i + 1;
 
-      if (option.equals("title"))
-      {
+      if (option.equals("title")) {
         System.out.println("" + choiceNum + ". " + title);
-      }
-      else if (option.equals("revenue"))
-      {
+      } else if (option.equals("revenue")) {
         int revenue = list.get(i).getRevenue();
         System.out.println("" + choiceNum + ". " + title + ": " + revenue);
-      }
-      else if (option.equals("rating"))
-      {
+      } else if (option.equals("rating")) {
         double rating = list.get(i).getUserRating();
         System.out.println("" + choiceNum + ". " + title + ": " + rating);
-      }
-      else
-      {
+      } else {
         System.out.println("" + choiceNum + ". " + title);
       }
     }
 
-    if (list.size() > 0)
-    {
+    if (list.size() > 0) {
       System.out.println("Which movie would you like to learn more about?");
       System.out.print("Enter number: ");
 
@@ -374,9 +362,7 @@ public class MovieCollection {
       Movie selectedMovie = list.get(choice - 1);
 
       displayMovieInfo(selectedMovie);
-    }
-    else
-    {
+    } else {
       System.out.println("No results match your search");
     }
 
@@ -385,41 +371,41 @@ public class MovieCollection {
   }
 
   private void listHighestRated() {
-    for(int i = 1; i < movies.size(); i++){
+    for (int i = 1; i < movies.size(); i++) {
       Movie temp = movies.get(i);
       double tempR = temp.getUserRating();
       int idx = i;
-      while(idx > 0 && tempR < movies.get(idx -1).getUserRating()){
-        movies.set(idx,movies.get(idx-1));
+      while (idx > 0 && tempR < movies.get(idx - 1).getUserRating()) {
+        movies.set(idx, movies.get(idx - 1));
         idx--;
       }
-      movies.set(idx,temp);
+      movies.set(idx, temp);
     }
     ArrayList<Movie> rating = new ArrayList<Movie>();
-    for(int i = 1; i <= 50; i++){
+    for (int i = 1; i <= 50; i++) {
       int idx = movies.size() - i;
       rating.add(movies.get(idx));
     }
-    displayReturns(rating,"rating");
+    displayReturns(rating, "rating");
   }
-  
+
   private void listHighestRevenue() {
-    for(int i = 1; i < movies.size(); i++){
+    for (int i = 1; i < movies.size(); i++) {
       Movie temp = movies.get(i);
       double tempR = temp.getRevenue();
       int idx = i;
-      while(idx > 0 && tempR < movies.get(idx -1).getRevenue()){
-        movies.set(idx,movies.get(idx-1));
+      while (idx > 0 && tempR < movies.get(idx - 1).getRevenue()) {
+        movies.set(idx, movies.get(idx - 1));
         idx--;
       }
-      movies.set(idx,temp);
+      movies.set(idx, temp);
     }
 
     ArrayList<Movie> revenue = new ArrayList<Movie>();
-    for(int i = 1; i <= 50; i++){
+    for (int i = 1; i <= 50; i++) {
       int idx = movies.size() - i;
       revenue.add(movies.get(idx));
     }
-    displayReturns(revenue,"revenue");
+    displayReturns(revenue, "revenue");
   }
 }
